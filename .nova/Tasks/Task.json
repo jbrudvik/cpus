@@ -1,0 +1,18 @@
+{
+  "actions" : {
+    "build" : {
+      "enabled" : true,
+      "script" : "go build"
+    },
+    "clean" : {
+      "enabled" : true,
+      "script" : "rm cpus"
+    },
+    "run" : {
+      "enabled" : true,
+      "script" : "go run ."
+    }
+  },
+  "identifier" : "8DB1E121-0CC9-4580-9D8B-5D13B403696E",
+  "openLogOnRun" : "start"
+}

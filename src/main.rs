@@ -3,29 +3,48 @@ use sysinfo::{CpuExt, System, SystemExt};
 
 #[derive(Parser)]
 #[command(version, about, author)]
-struct Cli {}
-
-/*
-TODO: Figure out how to poll at an interval with bash (to start)
-TODO: Add a -w / --watch flag that keeps this open (and keeps repeating every second or so)
-TODO: Ensure readings are correct -- maybe sleep to figure out?
-- Play with numbers to make it different
-*/
+struct Cli {
+    /// Prints CPU usage once per second, forever
+    #[arg(short, long)]
+    watch: bool,
+}
 
 fn main() {
+    let args = Cli::parse();
+
     let mut sys = System::new_all();
 
+    if args.watch {
+        loop {
+            print_cpus(&mut sys);
+        }
+    } else {
+        print_cpus(&mut sys);
+    }
+}
+
+type CpuUsages = Vec<f32>;
+
+fn get_cpu_usages(sys: &mut System) -> CpuUsages {
     // Make CPU readings accurate
-    for _ in 0..2 {
+    for _ in 0..4 {
         std::thread::sleep(std::time::Duration::from_millis(250));
         sys.refresh_cpu();
     }
 
-    let cpu_usages: Vec<f32> = sys.cpus().iter().map(|cpu| cpu.cpu_usage()).collect();
+    sys.cpus().iter().map(|cpu| cpu.cpu_usage()).collect()
+}
+
+fn format_cpu_usages(cpu_usages: CpuUsages) -> String {
     let cpu_usage_strings: Vec<String> = cpu_usages
         .iter()
-        .map(|cpu_usage| format!("{:.0}", cpu_usage))
+        .map(|cpu_usage| format!("{:>3.0}", cpu_usage))
         .collect();
-    let output = cpu_usage_strings.join(" ");
-    println!("{}", output);
+    cpu_usage_strings.join(" ")
+}
+
+fn print_cpus(sys: &mut System) {
+    let cpu_usages = get_cpu_usages(sys);
+    let formatted_cpu_usages = format_cpu_usages(cpu_usages);
+    println!("{}", formatted_cpu_usages);
 }

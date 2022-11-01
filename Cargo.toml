@@ -2,7 +2,11 @@
 name = "cpus"
 version = "0.1.0"
 edition = "2021"
+description = "Print CPU usage"
+authors = ["Jeremy Brudvik <jeremy@brudvik.me>"]
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
+clap = { version = "4.0.18", features = ["derive"] }
+sysinfo = "0.26.7"

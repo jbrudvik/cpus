@@ -16,10 +16,10 @@ fn main() {
 
     if args.watch {
         loop {
-            print_cpus(&mut sys);
+            print_cpu_usages(&mut sys);
         }
     } else {
-        print_cpus(&mut sys);
+        print_cpu_usages(&mut sys);
     }
 }
 
@@ -43,7 +43,7 @@ fn format_cpu_usages(cpu_usages: CpuUsages) -> String {
     cpu_usage_strings.join(" ")
 }
 
-fn print_cpus(sys: &mut System) {
+fn print_cpu_usages(sys: &mut System) {
     let cpu_usages = get_cpu_usages(sys);
     let formatted_cpu_usages = format_cpu_usages(cpu_usages);
     println!("{}", formatted_cpu_usages);

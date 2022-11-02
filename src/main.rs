@@ -14,6 +14,12 @@ fn main() {
 
     let mut sys = System::new_all();
 
+    // Make CPU readings accurate
+    for _ in 0..2 {
+        std::thread::sleep(std::time::Duration::from_millis(250));
+        sys.refresh_cpu();
+    }
+
     if args.watch {
         loop {
             print_cpu_usages(&mut sys);
@@ -23,28 +29,22 @@ fn main() {
     }
 }
 
-type CpuUsages = Vec<f32>;
+/// Waits 1 second and then prints CPU usages
+fn print_cpu_usages(sys: &mut System) {
+    // Delay between readings, then refresh CPU
+    std::thread::sleep(std::time::Duration::from_millis(1000));
+    sys.refresh_cpu();
 
-fn get_cpu_usages(sys: &mut System) -> CpuUsages {
-    // Make CPU readings accurate
-    for _ in 0..4 {
-        std::thread::sleep(std::time::Duration::from_millis(250));
-        sys.refresh_cpu();
-    }
+    // Get CPU usages
+    let cpu_usages: Vec<f32> = sys.cpus().iter().map(|cpu| cpu.cpu_usage()).collect();
 
-    sys.cpus().iter().map(|cpu| cpu.cpu_usage()).collect()
-}
-
-fn format_cpu_usages(cpu_usages: CpuUsages) -> String {
+    // Format CPU usages
     let cpu_usage_strings: Vec<String> = cpu_usages
         .iter()
         .map(|cpu_usage| format!("{:>3.0}", cpu_usage))
         .collect();
-    cpu_usage_strings.join(" ")
-}
+    let formatted_cpu_usages = cpu_usage_strings.join(" ");
 
-fn print_cpu_usages(sys: &mut System) {
-    let cpu_usages = get_cpu_usages(sys);
-    let formatted_cpu_usages = format_cpu_usages(cpu_usages);
+    // Output CPU usages
     println!("{}", formatted_cpu_usages);
 }

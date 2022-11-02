@@ -1,6 +1,6 @@
 # cpus
 
-Print CPU usage
+Print CPU usage for each core
 
 ## Usage
 
@@ -8,24 +8,24 @@ Print CPU usage
 
 ```sh
 $ cpus -h
-Print CPU usage
+Print CPU usage for each core
 
 Usage: cpus [OPTIONS]
 
 Options:
-  -w, --watch    Prints CPU usage once per second, forever
+  -w, --watch    Prints CPU usage for each core once per second, forever
   -h, --help     Print help information
   -V, --version  Print version information
 ```
 
-### Print CPU usage once
+### Print CPU usage for each core once
 
 ```sh
 $ cpus
  16  15  13  10   6   0   0   0
 ```
 
-### Print CPU usage once per second, forever (until killed)
+### Print CPU usage for each core once per second, forever (until killed)
 
 ```
 $ cpus -w

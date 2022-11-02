@@ -1,18 +1,46 @@
 # cpus
 
-Minimal cmd line tool to see CPU core usage
+Print CPU usage
 
-## Why
+## Usage
 
-- I'd use this myself -- to quickly measure parallel program performance
-- I bet this could get reasonably big
+### Print help information
 
-## Design
+```sh
+$ cpus -h
+Print CPU usage
 
-- Just show current core state
-- Design: 1 line that refreshes -- maybe just outputs a line every refresh rate (maybe with timestamp)
-- Don't refresh. Just output a current snapshot. Then use other tools to output repeatedly (or include a flag to also do this).
+Usage: cpus [OPTIONS]
+
+Options:
+  -w, --watch    Prints CPU usage once per second, forever
+  -h, --help     Print help information
+  -V, --version  Print version information
+```
+
+### Print CPU usage once
+
+```sh
+$ cpus
+ 16  15  13  10   6   0   0   0
+```
+
+### Print CPU usage once per second, forever (until killed)
 
 ```
-5 12 6 7 55 100 87 100
+$ cpus -w
+ 16  16  13  10   2   2   0   0
+ 12   9   8   6   1   0   0   0
+ 20  20  19  14   0   0   0   1
+ 22  19  18  11   1   0   0   0
+ 24  18  17  17   0   1   0   0
+...
+```
+
+## Install
+
+```sh
+$ git clone https://github.com/jbrudvik/cpus
+$ cd cpus
+$ cargo install --path .
 ```

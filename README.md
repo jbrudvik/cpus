@@ -6,7 +6,7 @@ Print CPU usage (%) for each core
 
 ### Print help information
 
-```sh
+```
 $ cpus -h
 Print CPU usage (%) for each core
 
@@ -20,7 +20,7 @@ Options:
 
 ### Print CPU usage (%) for each core once
 
-```sh
+```
 $ cpus
  16  15  13  10   6   0   0   0
 ```
@@ -39,7 +39,7 @@ $ cpus -w
 
 ## Install
 
-```sh
+```
 $ git clone https://github.com/jbrudvik/cpus
 $ cd cpus
 $ cargo install --path .

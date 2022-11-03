@@ -7,6 +7,10 @@ struct Cli {
     /// Prints CPU usage once per second, forever
     #[arg(short, long)]
     watch: bool,
+
+    /// Clear the screen after printing (watch-mode only)
+    #[arg(short, long)]
+    clear: bool,
 }
 
 fn main() {
@@ -22,6 +26,9 @@ fn main() {
 
     if args.watch {
         loop {
+            if args.clear {
+                print!("{esc}c", esc = 27 as char);
+            }
             print_cpu_usages(&mut sys);
         }
     } else {

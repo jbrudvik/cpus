@@ -4,7 +4,7 @@ use sysinfo::{CpuExt, System, SystemExt};
 #[derive(Parser)]
 #[command(version, about, author)]
 struct Cli {
-    /// Prints CPU usage once per second, forever
+    /// Print CPU usage (%) for each core once per second, forever
     #[arg(short, long)]
     watch: bool,
 

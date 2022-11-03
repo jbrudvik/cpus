@@ -13,7 +13,8 @@ Print CPU usage (%) for each core
 Usage: cpus [OPTIONS]
 
 Options:
-  -w, --watch    Prints CPU usage (%) for each core once per second, forever
+  -w, --watch    Print CPU usage (%) for each core once per second, forever
+  -c, --clear    Clear the screen after printing (watch-mode only)
   -h, --help     Print help information
   -V, --version  Print version information
 ```

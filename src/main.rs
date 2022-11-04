@@ -29,7 +29,6 @@ fn main() {
             if args.clear {
                 print!("{esc}c", esc = 27 as char);
             }
-            let x = "hello";
             print_cpu_usages(&mut sys);
         }
     } else {

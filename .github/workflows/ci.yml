@@ -1,0 +1,16 @@
+name: CI
+on: [push]
+jobs:
+  Build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Git checkout
+        uses: actions/checkout@v3
+      - name: Set up Rust tools
+        uses: actions-rs/toolchain@v1
+      - name: Check format
+        run: cargo fmt --check
+      - name: Check
+        run: RUSTFLAGS="-D warnings" cargo check
+      # - name: Test
+      #   run: cargo test

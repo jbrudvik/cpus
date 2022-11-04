@@ -9,8 +9,8 @@ jobs:
       - name: Set up Rust tools
         uses: actions-rs/toolchain@v1
         with:
+          default: true
           profile: minimal
-          override: true
       - name: Check format
         run: cargo fmt --check
       - name: Check

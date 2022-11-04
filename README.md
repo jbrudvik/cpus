@@ -2,6 +2,8 @@
 
 Print CPU usage (%) for each core
 
+[![CI](https://github.com/jbrudvik/cpus/actions/workflows/ci.yml/badge.svg)](https://github.com/jbrudvik/cpus/actions/workflows/ci.yml)
+
 ## Usage
 
 ### Print help information

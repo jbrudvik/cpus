@@ -7,7 +7,7 @@ jobs:
       - name: Git checkout
         uses: actions/checkout@v3
       - name: Set up Rust
-        run: curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -- -y
+        run: curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
       - name: Check format
         run: cargo fmt --check
       - name: Check

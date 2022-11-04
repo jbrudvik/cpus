@@ -6,10 +6,8 @@ jobs:
     steps:
       - name: Git checkout
         uses: actions/checkout@v3
-      - name: Set up Rust tools
-        uses: actions-rs/toolchain@v1
-        with:
-          toolchain: stable
+      - name: Set up Rust
+        run: curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
       - name: Check format
         run: cargo fmt --check
       - name: Check
